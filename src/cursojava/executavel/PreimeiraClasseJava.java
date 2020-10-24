@@ -6,10 +6,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import cursojava.classes.Aluno;
+import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
-import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutentificacao;
 import cursojava.constantes.StatusAluno;
-import cursojava.interfaces.PermitirAcesso;
 
 public class PreimeiraClasseJava {
 
@@ -18,9 +18,7 @@ public class PreimeiraClasseJava {
 		String login = JOptionPane.showInputDialog("Por favor, digite o login");
 		String senha = JOptionPane.showInputDialog("Por favor, digite a senha");
 		
-		PermitirAcesso permitirAcesso = new Secretario(login, senha);
-		
-		if(permitirAcesso.autenticar()) {
+		if(new FuncaoAutentificacao(new Diretor(login, senha)).autenticar())/*Trava o sistema pra quem não tiver o contrato*/ {
 		
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		
@@ -31,33 +29,12 @@ public class PreimeiraClasseJava {
 
 		/*new Aluno() é uma instância, criaçãpo de um objeto*/
 		/*Aluno 1 é uma referência ao objeto aluno*/
-		/*while (true) {*/
 			String nome = JOptionPane.showInputDialog("Qual o nome do Aluno?");
-			/*String idade = JOptionPane.showInputDialog("Qual a idade do Aluno?");
-			String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento?");
-			String RG = JOptionPane.showInputDialog("Qual o RG?");
-			String CPF = JOptionPane.showInputDialog("Qual o CPF?");
-			String nomeMae = JOptionPane.showInputDialog("Qual o nome da mae?");
-			String nomePai = JOptionPane.showInputDialog("Qual o nome do pai");
-			String dataMatricula = JOptionPane.showInputDialog("Qual a data de matricula?");
-			String SerieMatricula = JOptionPane.showInputDialog("Qual a Série de Matrícula?");
-			String nomeIES = JOptionPane.showInputDialog("Qual o nome da Universidade?");*/
-
+		
 			Aluno aluno1 = new Aluno();
 			
 			aluno1.setNome(nome);
-			/*aluno1.setIdade(Integer.valueOf(idade));
-			aluno1.setDataNascimento(dataNascimento);	
-			aluno1.setRegistroGeral(RG);
-			aluno1.setCPF(CPF);
-			aluno1.setNomeMae(nomeMae);
-			aluno1.setNomePai(nomePai);
-			aluno1.setDataMatricula(dataMatricula);
-			aluno1.setSerieMatriculado(SerieMatricula);
-			aluno1.setNomeEscola(nomeIES);*/
-			
-			//Integer.valueOf(String n = JOptionPane.showInputDialog("Quantas disciplinas o aluno tem?" + n));
-			
+						
 			for(int pos = 1; pos <= 5; pos++) {
 				String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina" + pos + "?");
 				String notaDisciplina = JOptionPane.showInputDialog("nota da disciplina" + pos + "?");
@@ -149,8 +126,28 @@ public class PreimeiraClasseJava {
 				System.out.println(aluno.getNome());
 				System.out.println("Suas matérias são: ");
 			}
+			/*aluno1.setIdade(Integer.valueOf(idade));
+			aluno1.setDataNascimento(dataNascimento);	
+			aluno1.setRegistroGeral(RG);
+			aluno1.setCPF(CPF);
+			aluno1.setNomeMae(nomeMae);
+			aluno1.setNomePai(nomePai);
+			aluno1.setDataMatricula(dataMatricula);
+			aluno1.setSerieMatriculado(SerieMatricula);
+			aluno1.setNomeEscola(nomeIES);*/
 			
-			for (Disciplina disciplina : aluno1.getDisciplinas()) {
+			//Integer.valueOf(String n = JOptionPane.showInputDialog("Quantas disciplinas o aluno tem?" + n));
+			/*String idade = JOptionPane.showInputDialog("Qual a idade do Aluno?");
+			String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento?");
+			String RG = JOptionPane.showInputDialog("Qual o RG?");
+			String CPF = JOptionPane.showInputDialog("Qual o CPF?");
+			String nomeMae = JOptionPane.showInputDialog("Qual o nome da mae?");
+			String nomePai = JOptionPane.showInputDialog("Qual o nome do pai");
+			String dataMatricula = JOptionPane.showInputDialog("Qual a data de matricula?");
+			String SerieMatricula = JOptionPane.showInputDialog("Qual a Série de Matrícula?");
+			String nomeIES = JOptionPane.showInputDialog("Qual o nome da Universidade?");*/
+			
+			/*for (Disciplina disciplina : aluno1.getDisciplinas()) {
 				System.out.println(disciplina.getDisciplina());
 				
 			}*/
