@@ -3,19 +3,12 @@ package cursojava.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aluno {
+public class Aluno extends Pessoa {
 	/*Estes são os atributos dos alunos*/
-	private String nome;
-	private int idade;
-	private String dataNascimento;
-	private String registroGeral;
-	private String CPF;
-	private String nomeMae;
-	private String nomePai;
-	private String dataMatricula;
-	private String nomeEscola;
-	private String SerieMatriculado;
 	
+	public String DataMatricula;
+	public String nomeEscola;
+	public String SerieMatriculado;
 	
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
@@ -50,6 +43,8 @@ public class Aluno {
 		double media = this.getMedia();
 		if(media > 50) {
 			return "Aluno está aprovado";
+		}else if(30 <= media &&  media < 50){
+			return "Aluno está em recuperação";
 		}else {
 			return "Aluno está reprovado";
 		}
@@ -130,11 +125,11 @@ public class Aluno {
 	}
 
 	public String getDataMatricula() {
-		return dataMatricula;
+		return DataMatricula;
 	}
 
 	public void setDataMatricula(String dataMatricula) {
-		this.dataMatricula = dataMatricula;
+		this.DataMatricula = dataMatricula;
 	}
 
 	public String getNomeEscola() {
@@ -162,10 +157,69 @@ public class Aluno {
 				", CPF=" + CPF +
 				", nomeMae=" + nomeMae +
 				", nomePai=" + nomePai + 
-				", dataMatricula="+ dataMatricula +
+				", dataMatricula="+ DataMatricula +
 				", nomeEscola=" + nomeEscola +
 				", SerieMatriculado=" + SerieMatriculado + 
 				 "]";
-	} 	 
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((DataMatricula == null) ? 0 : DataMatricula.hashCode());
+		result = prime * result + ((SerieMatriculado == null) ? 0 : SerieMatriculado.hashCode());
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
+		result = prime * result + ((nomeEscola == null) ? 0 : nomeEscola.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aluno other = (Aluno) obj;
+		if (DataMatricula == null) {
+			if (other.DataMatricula != null)
+				return false;
+		} else if (!DataMatricula.equals(other.DataMatricula))
+			return false;
+		if (SerieMatriculado == null) {
+			if (other.SerieMatriculado != null)
+				return false;
+		} else if (!SerieMatriculado.equals(other.SerieMatriculado))
+			return false;
+		if (disciplinas == null) {
+			if (other.disciplinas != null)
+				return false;
+		} else if (!disciplinas.equals(other.disciplinas))
+			return false;
+		if (nomeEscola == null) {
+			if (other.nomeEscola != null)
+				return false;
+		} else if (!nomeEscola.equals(other.nomeEscola))
+			return false;
+		return true;
+	} 
+	
+	@Override /*Identifica método já existente, sobreescrito*/
+	public boolean pessoaMaiorIdade() {
+		
+		return idade >= 21;
+	}
+	
+	public String mensagemMaiorIdade() {
+		return this.pessoaMaiorIdade() ? "Oba, aluno é maior de idade" : "Vixe, se saia, demenor";
+	}
+
+	@Override
+	public double Salario() {
+		// TODO Auto-generated method stub
+		return 800;
+	}
 }
 
